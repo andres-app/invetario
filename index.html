@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Inventario</title>
+    <style>
+        /* Estilos CSS mantenidos iguales */
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Gestión de Inventario</h1>
+    </header>
+
+    <div class="container">
+        <!-- Módulo de Inventario -->
+        <div>
+            <h2>Inventario</h2>
+            <div class="input-group">
+                <input type="text" id="codigo_sbn_input" placeholder="Ingrese código patrimonial">
+                <button id="buscarInventario">🔍</button>
+            </div>
+
+            <form id="formInventario" method="POST" action="procesar_formulario.php" style="display: none;">
+                <input type="hidden" id="codigo_sbn_hidden" name="codigo_sbn"> <!-- Campo oculto obligatorio -->
+
+                <label for="bien">Bien:</label>
+                <input type="text" id="bien" name="bien">
+
+                <label for="marca">Marca:</label>
+                <input type="text" id="marca" name="marca">
+
+                <label for="modelo">Modelo:</label>
+                <input type="text" id="modelo" name="modelo">
+
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" name="usuario">
+
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("buscarInventario").addEventListener("click", function () {
+                const codigo = document.getElementById("codigo_sbn_input").value.trim();
+
+                if (codigo === "") {
+                    alert("Por favor, ingrese un código patrimonial.");
+                    return;
+                }
+
+                fetch("obtener_datos.php?codigo_barras=" + codigo)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.exito) {
+                            // Asignar valores al formulario
+                            document.getElementById("codigo_sbn_hidden").value = codigo;
+                            document.getElementById("bien").value = data.bien || "";
+                            document.getElementById("marca").value = data.marca || "";
+                            document.getElementById("modelo").value = data.modelo || "";
+                            document.getElementById("usuario").value = data.usuario || "";
+
+                            document.getElementById("formInventario").style.display = "block";
+                        } else {
+                            alert(data.mensaje);
+                            document.getElementById("formInventario").reset();
+                            document.getElementById("formInventario").style.display = "none";
+                        }
+                    })
+                    .catch(err => {
+                        console.error("Error en la consulta:", err);
+                        alert("Error al buscar el activo.");
+                    });
+            });
+        });
+    </script>
+</body>
+
+</html>
