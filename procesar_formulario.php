@@ -12,10 +12,11 @@ try {
 }
 
 $codigo_sbn = $_POST['codigo_sbn'] ?? '';
-$bien = $_POST['bien'] ?? null;
-$marca = $_POST['marca'] ?? null;
-$modelo = $_POST['modelo'] ?? null;
-$usuario = $_POST['usuario'] ?? null;
+$campos = [
+    'bien', 'nombre_equipo', 'procesador', 'sistema_operativo', 'memoria_ram',
+    'capacidad_disco', 'area', 'usuario', 'nombres_completos', 'marca',
+    'modelo', 'serie', 'estado'
+];
 
 if (empty($codigo_sbn)) {
     die("Error: El código patrimonial es obligatorio.");
@@ -24,17 +25,12 @@ if (empty($codigo_sbn)) {
 $updateFields = [];
 $params = [':codigo_sbn' => $codigo_sbn];
 
-if ($bien !== null) $updateFields[] = "bien = :bien";
-if ($marca !== null) $updateFields[] = "marca = :marca";
-if ($modelo !== null) $updateFields[] = "modelo = :modelo";
-if ($usuario !== null) $updateFields[] = "usuario = :usuario";
-
-$params += [
-    ':bien' => $bien,
-    ':marca' => $marca,
-    ':modelo' => $modelo,
-    ':usuario' => $usuario,
-];
+foreach ($campos as $campo) {
+    if (!empty($_POST[$campo])) {
+        $updateFields[] = "$campo = :$campo";
+        $params[":$campo"] = $_POST[$campo];
+    }
+}
 
 if (!empty($updateFields)) {
     $sql = "UPDATE activos SET " . implode(', ', $updateFields) . " WHERE codigo_sbn = :codigo_sbn";

@@ -30,14 +30,41 @@
                 <label for="bien">Bien:</label>
                 <input type="text" id="bien" name="bien">
 
+                <label for="nombre_equipo">Nombre del Equipo:</label>
+                <input type="text" id="nombre_equipo" name="nombre_equipo">
+
+                <label for="procesador">Procesador:</label>
+                <input type="text" id="procesador" name="procesador">
+
+                <label for="sistema_operativo">Sistema Operativo:</label>
+                <input type="text" id="sistema_operativo" name="sistema_operativo">
+
+                <label for="memoria_ram">Memoria RAM:</label>
+                <input type="text" id="memoria_ram" name="memoria_ram">
+
+                <label for="capacidad_disco">Capacidad de Disco:</label>
+                <input type="text" id="capacidad_disco" name="capacidad_disco">
+
+                <label for="area">Área:</label>
+                <input type="text" id="area" name="area">
+
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" name="usuario">
+
+                <label for="nombres_completos">Nombres Completos:</label>
+                <input type="text" id="nombres_completos" name="nombres_completos">
+
                 <label for="marca">Marca:</label>
                 <input type="text" id="marca" name="marca">
 
                 <label for="modelo">Modelo:</label>
                 <input type="text" id="modelo" name="modelo">
 
-                <label for="usuario">Usuario:</label>
-                <input type="text" id="usuario" name="usuario">
+                <label for="serie">Serie:</label>
+                <input type="text" id="serie" name="serie">
+
+                <label for="estado">Estado:</label>
+                <input type="text" id="estado" name="estado">
 
                 <button type="submit">Guardar</button>
             </form>
@@ -58,12 +85,21 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.exito) {
-                            // Asignar valores al formulario
                             document.getElementById("codigo_sbn_hidden").value = codigo;
+
                             document.getElementById("bien").value = data.bien || "";
+                            document.getElementById("nombre_equipo").value = data.nombre_equipo || "";
+                            document.getElementById("procesador").value = data.procesador || "";
+                            document.getElementById("sistema_operativo").value = data.sistema_operativo || "";
+                            document.getElementById("memoria_ram").value = data.memoria_ram || "";
+                            document.getElementById("capacidad_disco").value = data.capacidad_disco || "";
+                            document.getElementById("area").value = data.area || "";
+                            document.getElementById("usuario").value = data.usuario || "";
+                            document.getElementById("nombres_completos").value = data.nombres_completos || "";
                             document.getElementById("marca").value = data.marca || "";
                             document.getElementById("modelo").value = data.modelo || "";
-                            document.getElementById("usuario").value = data.usuario || "";
+                            document.getElementById("serie").value = data.serie || "";
+                            document.getElementById("estado").value = data.estado || "";
 
                             document.getElementById("formInventario").style.display = "block";
                         } else {
