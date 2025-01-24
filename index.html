@@ -13,63 +13,107 @@
         <h1>Gestión de Inventario</h1>
     </header>
 
-    <div class="container">
-        <!-- Módulo de Inventario -->
-        <div>
-            <h2>Inventario</h2>
+    <main class="container">
+        <section class="search-section">
+            <h2>Buscar Activo</h2>
             <div class="input-group">
                 <input type="text" id="codigo_sbn_input" placeholder="Ingrese código patrimonial">
                 <button id="buscarInventario">🔍</button>
             </div>
+        </section>
 
+        <section class="form-section">
             <form id="formInventario" style="display: none;">
-                <input type="hidden" id="codigo_sbn_hidden" name="codigo_sbn"> <!-- Campo oculto obligatorio -->
+                <input type="hidden" id="codigo_sbn_hidden" name="codigo_sbn">
 
-                <label for="bien">Bien:</label>
-                <input type="text" id="bien" name="bien">
+                <div class="form-group">
+                    <label for="bien">Bien:</label>
+                    <input type="text" id="bien" name="bien">
+                </div>
 
-                <label for="nombre_equipo">Nombre del Equipo:</label>
-                <input type="text" id="nombre_equipo" name="nombre_equipo">
+                <div class="form-group">
+                    <label for="nombre_equipo">Nombre del Equipo:</label>
+                    <input type="text" id="nombre_equipo" name="nombre_equipo">
+                </div>
 
-                <label for="procesador">Procesador:</label>
-                <input type="text" id="procesador" name="procesador">
+                <div class="form-group">
+                    <label for="procesador">Procesador:</label>
+                    <input type="text" id="procesador" name="procesador">
+                </div>
 
-                <label for="sistema_operativo">Sistema Operativo:</label>
-                <input type="text" id="sistema_operativo" name="sistema_operativo">
+                <div class="form-group">
+                    <label for="sistema_operativo">Sistema Operativo:</label>
+                    <input type="text" id="sistema_operativo" name="sistema_operativo">
+                </div>
 
-                <label for="memoria_ram">Memoria RAM:</label>
-                <input type="text" id="memoria_ram" name="memoria_ram">
+                <div class="form-group">
+                    <label for="memoria_ram">Memoria RAM:</label>
+                    <input type="text" id="memoria_ram" name="memoria_ram">
+                </div>
 
-                <label for="capacidad_disco">Capacidad de Disco:</label>
-                <input type="text" id="capacidad_disco" name="capacidad_disco">
+                <div class="form-group">
+                    <label for="capacidad_disco">Capacidad de Disco:</label>
+                    <input type="text" id="capacidad_disco" name="capacidad_disco">
+                </div>
 
-                <label for="area">Área:</label>
-                <input type="text" id="area" name="area">
+                <div class="form-group">
+                    <label for="area">Área:</label>
+                    <input type="text" id="area" name="area">
+                </div>
 
-                <label for="usuario">Usuario:</label>
-                <input type="text" id="usuario" name="usuario">
+                <div class="form-group">
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" id="usuario" name="usuario">
+                </div>
 
-                <label for="nombres_completos">Nombres Completos:</label>
-                <input type="text" id="nombres_completos" name="nombres_completos">
+                <div class="form-group">
+                    <label for="nombres_completos">Nombres Completos:</label>
+                    <input type="text" id="nombres_completos" name="nombres_completos">
+                </div>
 
-                <label for="marca">Marca:</label>
-                <input type="text" id="marca" name="marca">
+                <div class="form-group">
+                    <label for="marca">Marca:</label>
+                    <input type="text" id="marca" name="marca">
+                </div>
 
-                <label for="modelo">Modelo:</label>
-                <input type="text" id="modelo" name="modelo">
+                <div class="form-group">
+                    <label for="modelo">Modelo:</label>
+                    <input type="text" id="modelo" name="modelo">
+                </div>
 
-                <label for="serie">Serie:</label>
-                <input type="text" id="serie" name="serie">
+                <div class="form-group">
+                    <label for="serie">Serie:</label>
+                    <input type="text" id="serie" name="serie">
+                </div>
 
-                <label for="estado">Estado:</label>
-                <input type="text" id="estado" name="estado">
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <input type="text" id="estado" name="estado">
+                </div>
 
-                <button type="submit">Guardar</button>
+                <button type="submit" class="btn-submit">Guardar</button>
             </form>
 
             <div id="mensaje" style="margin-top: 20px; display: none;"></div>
-        </div>
-    </div>
+        </section>
+    </main>
+
+    <footer class="bottom-menu">
+        <nav>
+            <a href="#menu1" class="menu-item">
+                <span>📄</span>
+                <p>Menu 1</p>
+            </a>
+            <a href="#menu2" class="menu-item">
+                <span>⚙️</span>
+                <p>Menu 2</p>
+            </a>
+            <a href="#menu3" class="menu-item">
+                <span>🔍</span>
+                <p>Menu 3</p>
+            </a>
+        </nav>
+    </footer>
 
     <script src="script.js"></script>
 </body>

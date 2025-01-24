@@ -1,10 +1,13 @@
-/* Estilos básicos para el diseño de la página */
+/* Estilo base */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
+    background-color: #f9fafb;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
@@ -12,85 +15,165 @@ header {
     color: white;
     padding: 20px;
     text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .container {
-    margin: 20px auto;
-    max-width: 800px;
-    background: #ffffff;
+    flex: 1;
+    width: 100%;
+    max-width: 500px;
     padding: 20px;
+    margin: auto;
+    background-color: white;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección de búsqueda */
+.search-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .input-group {
     display: flex;
-    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .input-group input {
     flex: 1;
-    padding: 10px;
+    padding: 15px;
+    border: none;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px;
     outline: none;
 }
 
 .input-group button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
+    padding: 15px 20px;
     background-color: #0078d4;
     color: white;
-    border-radius: 0 4px 4px 0;
+    border: none;
     cursor: pointer;
+    font-size: 16px;
 }
 
 .input-group button:hover {
     background-color: #005bb5;
 }
 
-form label {
-    display: block;
-    margin: 10px 0 5px;
+/* Formulario */
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-form input {
-    width: 100%;
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #555;
+}
+
+.form-group input {
     padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    margin-bottom: 10px;
+    font-size: 16px;
+    outline: none;
 }
 
-form button {
+.btn-submit {
     background-color: #28a745;
     color: white;
+    padding: 10px;
     border: none;
-    padding: 10px 20px;
-    font-size: 16px;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
 }
 
-form button:hover {
+.btn-submit:hover {
     background-color: #218838;
 }
 
-#mensaje {
-    padding: 10px;
-    border-radius: 4px;
-    font-size: 16px;
+/* Menu inferior */
+.bottom-menu {
+    width: 100%;
+    background: #ffffff;
+    border-top: 1px solid #ddd;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#mensaje.success {
-    background-color: #d4edda;
-    color: #155724;
+.bottom-menu nav {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
 }
 
-#mensaje.error {
-    background-color: #f8d7da;
-    color: #721c24;
+.menu-item {
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+    flex: 1;
+    padding: 5px;
+}
+
+.menu-item span {
+    display: block;
+    font-size: 24px;
+}
+
+.menu-item p {
+    margin: 0;
+    font-size: 12px;
+}
+
+.menu-item:hover {
+    background-color: #f4f4f4;
+}
+
+/* Responsivo */
+@media (min-width: 768px) {
+    .container {
+        max-width: 700px;
+    }
+    .input-group input {
+        font-size: 18px;
+    }
+    .btn-submit {
+        font-size: 18px;
+        padding: 12px;
+    }
+    .bottom-menu {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .container {
+        padding: 10px;
+    }
+    .input-group input {
+        font-size: 14px;
+    }
+    .btn-submit {
+        font-size: 14px;
+        padding: 8px;
+    }
 }
