@@ -24,7 +24,7 @@
                 <button id="buscarInventario">🔍</button>
             </div>
 
-            <form id="formInventario" method="POST" action="procesar_formulario.php" style="display: none;">
+            <form id="formInventario" style="display: none;">
                 <input type="hidden" id="codigo_sbn_hidden" name="codigo_sbn"> <!-- Campo oculto obligatorio -->
 
                 <label for="bien">Bien:</label>
@@ -68,11 +68,17 @@
 
                 <button type="submit">Guardar</button>
             </form>
+
+            <div id="mensaje" style="margin-top: 20px; display: none;"></div>
         </div>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("formInventario");
+            const mensaje = document.getElementById("mensaje");
+
+            // Buscar activo
             document.getElementById("buscarInventario").addEventListener("click", function () {
                 const codigo = document.getElementById("codigo_sbn_input").value.trim();
 
@@ -101,16 +107,41 @@
                             document.getElementById("serie").value = data.serie || "";
                             document.getElementById("estado").value = data.estado || "";
 
-                            document.getElementById("formInventario").style.display = "block";
+                            form.style.display = "block";
+                            mensaje.style.display = "none";
                         } else {
                             alert(data.mensaje);
-                            document.getElementById("formInventario").reset();
-                            document.getElementById("formInventario").style.display = "none";
+                            form.reset();
+                            form.style.display = "none";
                         }
                     })
                     .catch(err => {
                         console.error("Error en la consulta:", err);
                         alert("Error al buscar el activo.");
+                    });
+            });
+
+            // Enviar formulario sin recargar la página
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+
+                fetch("procesar_formulario.php", {
+                    method: "POST",
+                    body: formData,
+                })
+                    .then(response => response.text())
+                    .then(data => {
+                        mensaje.innerText = data;
+                        mensaje.style.display = "block";
+                        mensaje.style.color = "green";
+                    })
+                    .catch(err => {
+                        console.error("Error al guardar los datos:", err);
+                        mensaje.innerText = "Error al guardar los datos.";
+                        mensaje.style.display = "block";
+                        mensaje.style.color = "red";
                     });
             });
         });
